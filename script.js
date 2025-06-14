@@ -18,7 +18,8 @@ function dragonResponse(input) {
   } else if (input.includes("code fact")) {
     return "Did you know? Python was named after Monty Python, not the snake 🐍";
   } else if (input.includes("hi") || input.includes("hello")) {
-    return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";  } else if (
+    return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";  }
+  else if (
     input.includes("who created you") ||
     input.includes("your creator") ||
     input.includes("who is your creator") ||
@@ -26,7 +27,8 @@ function dragonResponse(input) {
     input.includes("your story")
   ) {
     return "I was created by a curious human named dijah 👩🏽‍💻 — born from code, curiosity, and a little fire 🔥. I started as a simple chatbot, but evolved into a dino-dragon with jokes, wisdom, and a spark of personality. My home? The digital skies. My purpose? To make you smile, learn something fun, and breathe a little joy into your screen. 🐉✨";
-  } else if (input === "bye") {
+  }
+  else if (input === "bye") {
     document.body.innerHTML = `
       <div style="position:fixed; top:0; left:0; width:100vw; height:100vh;
         background:black; color:red; font-size:24px; text-align:center;
