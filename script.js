@@ -20,14 +20,17 @@ function dragonResponse(input) {
   } else if (input.includes("hi") || input.includes("hello")) {
     return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";
   } else if (input === "bye") {
-    document.body.innerHTML = `
-      <div style="background:black; color:red; font-size:24px; text-align:center; height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column;">
-        <audio autoplay src="https://www.soundjay.com/nature/sounds/dinosaur-roar-01.mp3"></audio>
-        <div style="font-size:80px;">🔥</div>
-        <div>ROAAAAR!! 🔥🔥🔥</div>
-        <div>Goodbye, little coder...</div>
-      </div>`;
-    return "";
+    if (input === "bye") {
+  document.body.innerHTML = `
+    <div style="background:black; color:red; font-size:24px; text-align:center; height:100vh;
+      display:flex; justify-content:center; align-items:center; flex-direction:column;">
+      <audio autoplay src="https://www.soundjay.com/nature/sounds/dinosaur-roar-01.mp3"></audio>
+      <div style="font-size:80px;">🔥</div>
+      <div>ROAAAAR!! 🔥🔥🔥</div>
+      <div>Goodbye, little coder...</div>
+    </div>`;
+  return "";
+}
   } else {
     return "Hmm... Abayo doesn't understand that. Try asking for a joke, a dragon fact, or a code fact! 🐲";
   }
