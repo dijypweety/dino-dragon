@@ -1,34 +1,57 @@
 const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
 const userInput = document.getElementById("user-input");
+const dragonSprite = document.getElementById("dragon-sprite")
+
 
 function addMessage(sender, message) {
   const msg = document.createElement("div");
   msg.innerHTML = `<strong>${sender}:</strong> ${message}`;
   chatBox.appendChild(msg);
-  chatBox.scrollTop = chatBox.scrollHeight;
+  chatBox.scrollTop = chatBox.scrollHeight;  
+  speak(message);
+}
+function speak(message) {
+  const speech = new SpeechSynthesisUtterance(message);
+  speech.lang = 'en-US';
+  window.speechSynthesis.speak(speech);
+}
+
+function setMood(mood) {
+  if (mood === "fire") {
+    dragonSprite.src = "https://i.ibb.co/sVvhMGX/dragon-fire.gif";
+  } else if (mood === "happy") {
+    dragonSprite.src = "https://i.ibb.co/zPW9ZVH/dragon-happy.png";
+  } else if (mood === "sleepy") {
+    dragonSprite.src = "https://i.ibb.co/yNfkKwm/dragon-sleepy.png";
+  }
 }
 
 function dragonResponse(input) {
-  input = input.toLowerCase();
+    input = input.toLowerCase();
   if (input.includes("joke")) {
+    setMood("happy");
     return "Why did the dragon cross the road? To burn the chicken on the other side!";
   } else if (input.includes("dragon fact")) {
+    setMood("happy");
     return "Some dragons sleep on gold piles because they're fireproof and fabulous 💰🔥";
   } else if (input.includes("code fact")) {
     return "Did you know? Python was named after Monty Python, not the snake 🐍";
-  } else if (input.includes("hi") || input.includes("hello")) {
-    return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";  }
-  else if (
-    input.includes("who created you") ||
-    input.includes("your creator") ||
-    input.includes("who is your creator") ||
-    input.includes("origin") ||
-    input.includes("your story")
+  } else if (input.includes("how are you")) {
+    setMood("happy");
+    return "I'm soaring high and breathing fire! 🔥 How about you?";
+  } else if (
+    input.includes("who created you") || input.includes("your creator") ||
+    input.includes("who is your creator") || input.includes("origin") || input.includes("your story")
   ) {
-    return "I was created by a curious human named dijah 👩🏽‍💻 — born from code, curiosity, and a little fire 🔥. I started as a simple chatbot, but evolved into a dino-dragon with jokes, wisdom, and a spark of personality. My home? The digital skies. My purpose? To make you smile, learn something fun, and breathe a little joy into your screen. 🐉✨";
-  }
-  else if (input === "bye") {
+    return "I was created by a curious human named dijypweety 👩🏽‍💻 — born from code, curiosity, and a little fire 🔥. I started as a simple chatbot, but evolved into a dino-dragon with jokes, wisdom, and a spark of personality.";
+  } else if (input.includes("sleep")) {
+    setMood("sleepy");
+    return "Zzz... dragons need naps too. 💤";
+  } else if (input.includes("roar")) {
+    setMood("fire");
+    return "ROOOOAAARRR!!! 🔥🔥🔥";
+  } else if (input === "bye") {
     document.body.innerHTML = `
       <div style="position:fixed; top:0; left:0; width:100vw; height:100vh;
         background:black; color:red; font-size:24px; text-align:center;
@@ -43,9 +66,22 @@ function dragonResponse(input) {
     return "Hmm... Abayo doesn't understand that. Try asking for a joke, a dragon fact, or a code fact! 🐲";
   }
 }
+
 function suggest(text) {
   userInput.value = text;
   userInput.focus();
+}
+
+function startListening() {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-US";
+  recognition.start();
+
+  recognition.onresult = function(event) {
+    const voiceInput = event.results[0][0].transcript;
+    userInput.value = voiceInput;
+    chatForm.requestSubmit();
+  };
 }
 
 chatForm.addEventListener("submit", (e) => {
@@ -56,8 +92,10 @@ chatForm.addEventListener("submit", (e) => {
   addMessage("You", input);
   const response = dragonResponse(input);
   if (response) {
-    setTimeout(() => addMessage("Abayo 🦕", response), 500);
+    setTimeout(() => addMessage("Abayo 🐉🦕", response), 500);
   }
 
   userInput.value = "";
 });
+
+
