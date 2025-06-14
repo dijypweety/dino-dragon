@@ -18,7 +18,14 @@ function dragonResponse(input) {
   } else if (input.includes("code fact")) {
     return "Did you know? Python was named after Monty Python, not the snake 🐍";
   } else if (input.includes("hi") || input.includes("hello")) {
-    return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";
+    return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";  } else if (
+    input.includes("who created you") ||
+    input.includes("your creator") ||
+    input.includes("who is your creator") ||
+    input.includes("origin") ||
+    input.includes("your story")
+  ) {
+    return "I was created by a curious human named dijah 👩🏽‍💻 — born from code, curiosity, and a little fire 🔥. I started as a simple chatbot, but evolved into a dino-dragon with jokes, wisdom, and a spark of personality. My home? The digital skies. My purpose? To make you smile, learn something fun, and breathe a little joy into your screen. 🐉✨";
   } else if (input === "bye") {
     document.body.innerHTML = `
       <div style="position:fixed; top:0; left:0; width:100vw; height:100vh;
@@ -34,6 +41,10 @@ function dragonResponse(input) {
     return "Hmm... Abayo doesn't understand that. Try asking for a joke, a dragon fact, or a code fact! 🐲";
   }
 }
+function suggest(text) {
+  userInput.value = text;
+  userInput.focus();
+}
 
 chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -43,7 +54,7 @@ chatForm.addEventListener("submit", (e) => {
   addMessage("You", input);
   const response = dragonResponse(input);
   if (response) {
-    setTimeout(() => addMessage("Abayo 🐉🦕", response), 500);
+    setTimeout(() => addMessage("Abayo 🦕", response), 500);
   }
 
   userInput.value = "";
