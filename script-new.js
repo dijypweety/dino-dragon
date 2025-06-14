@@ -91,8 +91,12 @@ function dragonResponse(input) {
         <div>Goodbye, little coder...</div>
       </div>`;
     return "";
+    
   } else {
-    return "Hmm... Abayo doesn't understand that. Try asking for a joke, a dragon fact, or a code fact! 🐲";
+    return "Hmm... Abayo doesn't understand that.}
+
+  return null;
+} Try asking for a joke, a dragon fact, or a code fact! 🐲";
   }
 }
 
