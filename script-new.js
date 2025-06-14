@@ -5,6 +5,30 @@ const dragonSprite = document.getElementById("dragon-sprite")
 const OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxx";
 
 
+function updateMemoryFromInput(input) {
+  if (input.toLowerCase().startsWith("your name is ")) {
+    const newName = input.split("your name is ")[1].trim();
+    abayoMemory.name = newName;
+    localStorage.setItem("abayoMemory", JSON.stringify(abayoMemory));
+    return `${newName}? I love it! From now on, that’s me 🐲💙`;
+  }
+
+  const trainedReply = updateMemoryFromInput(input);
+if (trainedReply) {
+  addMessage(abayoMemory.name, trainedReply);
+  userInput.value = "";
+  return;
+}
+
+  if (input.toLowerCase().startsWith("you like ") || input.toLowerCase().startsWith("you are ")) {
+    abayoMemory.facts.push(input);
+    localStorage.setItem("abayoMemory", JSON.stringify(abayoMemory));
+    return `Okay! I'll remember that: "${input}" 🤓`;
+  }
+
+  return null;
+}
+
 function addMessage(sender, message) {
   const msg = document.createElement("div");
   msg.innerHTML = `<strong>${sender}:</strong> ${message}`;
@@ -30,6 +54,10 @@ function setMood(mood) {
 
 function dragonResponse(input) {
     input = input.toLowerCase();
+  if (input.includes("hi") || input.includes("hello")) {
+  return "Hewwo! I'm Abayo, your dino-dragon buddy! 🐉🦕";
+}
+
   if (input.includes("joke")) {
     setMood("happy");
     return "Why did the dragon cross the road? To burn the chicken on the other side!";
