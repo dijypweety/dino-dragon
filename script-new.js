@@ -2,6 +2,7 @@ const chatBox = document.getElementById("chat-box");
 const chatForm = document.getElementById("chat-form");
 const userInput = document.getElementById("user-input");
 const dragonSprite = document.getElementById("dragon-sprite")
+const OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxx";
 
 
 function addMessage(sender, message) {
