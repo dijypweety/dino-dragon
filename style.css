@@ -22,13 +22,17 @@ body {
 
 #chat-box {
   background-color: #000;
-  colour: #87ceeb;
+  color: #87ceeb; /* sky blue text */
   border: 1px solid #87ceeb;
   padding: 10px;
   border-radius: 10px;
   height: 300px;
   overflow-y: auto;
   box-shadow: inset 0 0 15px #87ceeb;
+}
+
+#chat-box strong {
+  color: #ffffff; /* white name labels */
 }
 
 form {
