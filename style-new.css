@@ -20,6 +20,10 @@ body {
   backdrop-filter: blur(8px);
 }
 
+#dragon-sprite {
+  width: 150px;
+  margin-bottom: 10px;
+}
 #chat-box {
   background-color: #000;
   color: #87ceeb; /* sky blue text */
@@ -29,6 +33,7 @@ body {
   height: 300px;
   overflow-y: auto;
   box-shadow: inset 0 0 15px #87ceeb;
+  text-align: left;
 }
 
 #chat-box strong {
@@ -57,7 +62,32 @@ button {
   font-weight: bold;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
-}#suggestions {
+}#suggestions, #voice-controls {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+#suggestions button, #voice-controls button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #000;
+  color: #87ceeb;
+  border: 1px solid #87ceeb;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+#suggestions button:hover, #voice-controls button:hover {
+  background-color: #111;
+}
+
+
+#suggestions {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
