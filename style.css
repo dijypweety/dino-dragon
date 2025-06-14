@@ -22,6 +22,7 @@ body {
 
 #chat-box {
   background-color: #000;
+  colour: #87ceeb;
   border: 1px solid #87ceeb;
   padding: 10px;
   border-radius: 10px;
