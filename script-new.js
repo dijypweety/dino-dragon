@@ -4,8 +4,29 @@ const userInput = document.getElementById("user-input");
 const dragonSprite = document.getElementById("dragon-sprite")
 const OPENAI_API_KEY = "sk-xxxxxxxxxxxxxxxxxxxxxxxx";
 
-
 function updateMemoryFromInput(input) {
+  const lc = input.toLowerCase();
+
+  const ignoreList = ["hi", "hello", "how are you", "bye", "roar", "joke", "code fact", "dragon fact"];
+  if (ignoreList.includes(lc)) return null;
+
+  if (lc.startsWith("your name is ")) {
+    const newName = input.split("your name is ")[1].trim();
+    abayoMemory.name = newName;
+    localStorage.setItem("abayoMemory", JSON.stringify(abayoMemory));
+    return `${newName}? I love it! From now on, that’s me 🐲💙`;
+  }
+
+  if (lc.startsWith("you like ") || lc.startsWith("you are ")) {
+    abayoMemory.facts.push(input);
+    localStorage.setItem("abayoMemory", JSON.stringify(abayoMemory));
+    return `Okay! I'll remember that: "${input}" 🤓`;
+  }
+
+  return null;
+}
+
+
   if (input.toLowerCase().startsWith("your name is ")) {
     const newName = input.split("your name is ")[1].trim();
     abayoMemory.name = newName;
