@@ -123,7 +123,9 @@ function dragonResponse(input) {
 
 function suggest(text) {
   userInput.value = text;
-  userInput.focus();
+  userInput.focus(); chatForm.requestSubmit(); // auto-submit the form
+}
+  
 }
 
 function startListening() {
